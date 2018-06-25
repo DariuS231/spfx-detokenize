@@ -1,0 +1,19 @@
+{
+  "name": "spfx-detokenize",
+  "version": "0.1.0",
+  "description": "Detokenize files on SPFX build",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "SPFX",
+    "Token",
+    "SharePoint"
+  ],
+  "author": "Dario Alvarez <dario17231@gmail.com> (https://js231sp.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}

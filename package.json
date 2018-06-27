@@ -1,6 +1,6 @@
 {
   "name": "spfx-detokenize",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Detokenize files on SPFX build",
   "main": "index.js",
   "scripts": {

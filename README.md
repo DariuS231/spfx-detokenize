@@ -50,3 +50,18 @@ build.rig.addBuildTasks(detokenize([{
 build.initialize(gulp);
 
 ```
+## Build
+
+The values should be provided after the name of the gul past(`serve`, `build`).
+
+```
+gulp build --appId "0ae21bb6-5a8f-44ca-95fe-4dd2c05be1c8" --welcomeText "Hello!" --resourceURL "https://google.com"
+```
+
+```
+gulp serve --appId "0ae21bb6-5a8f-44ca-95fe-4dd2c05be1c8" --welcomeText "Hello!" --resourceURL "https://google.com"
+```
+
+Otherwise they will be prompted during the build process. 
+
+It is recommended to provided the values particularly when running `gulp serve` as they will be prompted again and again after each change on the source code.

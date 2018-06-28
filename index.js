@@ -38,6 +38,8 @@ const getParamValue = async (tokenData, args) => {
         } while (!paramValue);
         rl.close();
     }
+    // Adds the value as a new parameter so it wont be requested again when running gulp serve
+    process.argv.push(`--${paramName}`, paramValue);
     return paramValue;
 };
 

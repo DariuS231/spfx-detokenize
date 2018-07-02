@@ -5,7 +5,7 @@ const apiURLValue = "https://js231sp.com/";
 const testFilePath = "testFiles/fileToReplaceTest";
 
 module.exports = {
-    config: { libFolder: "./test/" },
+    config: { libFolder: "./test" },
     apiIdValue,
     apiURLValue,
     testFilePath,

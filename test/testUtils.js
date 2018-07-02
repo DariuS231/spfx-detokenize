@@ -15,18 +15,18 @@ const countWords = (str, strToFind) => {
 }
 const getFilesOriginalData = (replaceArrayData, config) => {
     replaceArrayData.forEach(tokenData => {
-        tokenData.Originalfiles = [];
+        tokenData.OriginalFiles = [];
         tokenData.files.forEach(file => {
             const content = fs.readFileSync(`${config.libFolder}/${file.replace(/\.[^.]*$/ig, '')}.js`, 'utf-8');
             const tokenCount = countWords(content, tokenData.token);
-            tokenData.Originalfiles.push({ file, content, tokenCount });
+            tokenData.OriginalFiles.push({ file, content, tokenCount });
         });
     });
     return replaceArrayData
 }
 const setFilesOriginalData = (replaceArrayData, config) => {
     replaceArrayData.forEach(tokenData => {
-        tokenData.Originalfiles.forEach(file => {
+        tokenData.OriginalFiles.forEach(file => {
             fs.writeFileSync(`${config.libFolder}/${file.file.replace(/\.[^.]*$/ig, '')}.js`, file.content, 'utf-8');
         });
     });
@@ -34,7 +34,7 @@ const setFilesOriginalData = (replaceArrayData, config) => {
 const isFilesOriginalDataDifferent = (replaceArrayData, config) => {
     let filesContentIsDiff = true;
     replaceArrayData.forEach(tokenData => {
-        tokenData.Originalfiles.forEach(file => {
+        tokenData.OriginalFiles.forEach(file => {
             const content = fs.readFileSync(`${config.libFolder}/${file.file.replace(/\.[^.]*$/ig, '')}.js`, 'utf-8');
             const tokenCount = countWords(content, tokenData.token);
             const replacedCount = countWords(content, tokenData.replacedValue);

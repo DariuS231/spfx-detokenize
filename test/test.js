@@ -1,9 +1,8 @@
 const assert = require('assert');
 
-const spfxTokenReplace = require('../index');
+const spfxTokenReplace = require('../lib');
 let { apiURLValue, config, apiIdValue, replaceArrayData } = require("./testData");
 const { setFilesOriginalData, getFilesOriginalData, isFilesOriginalDataDifferent } = require("./testUtils");
-var spawn = require('child_process').spawn;
 
 describe('spfxTokenReplace instance', function () {
     describe('Returned Instance properties', function () {
@@ -51,4 +50,4 @@ describe('spfxTokenReplace instance', function () {
             setFilesOriginalData(replaceArrayData, config);
         });
     });
-});
+}); 

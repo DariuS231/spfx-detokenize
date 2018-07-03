@@ -1,8 +1,8 @@
 const assert = require('assert');
 
 const spfxTokenReplace = require('../lib');
-let { apiURLValue, config, apiIdValue, replaceArrayData } = require("./testData");
-const { setFilesOriginalData, getFilesOriginalData, isFilesOriginalDataDifferent } = require("./testUtils");
+let { apiURLValue, config, apiIdValue, replaceArrayData } = require("./testData/testData");
+const { setFilesOriginalData, getFilesOriginalData, isFilesOriginalDataDifferent } = require("./testUtils/testUtils");
 
 describe('spfxTokenReplace instance', function () {
     describe('Returned Instance properties', function () {

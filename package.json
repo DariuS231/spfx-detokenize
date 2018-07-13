@@ -2,7 +2,7 @@
   "name": "spfx-detokenize",
   "version": "0.2.0",
   "description": "An package to help de-tokenizing values within our source code when building or debugging SPFx solutions, avoiding having some information hardcoded in the code or relaying on environment variables",
-  "main": "./lib/index",
+  "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
@@ -14,9 +14,18 @@
   "directories": {
     "lib": "./lib"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DariuS231/spfx-detokenize.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DariuS231/spfx-detokenize/issues"
+  },
+  "homepage": "https://github.com/DariuS231/spfx-detokenize#readme",
   "author": "Dario Alvarez <dario17231@gmail.com> (https://js231sp.com)",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^4.1.2",
     "mocha": "^5.2.0"
   }
 }

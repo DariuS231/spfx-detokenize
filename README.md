@@ -100,9 +100,9 @@ gulp serve --appId "0ae21bb6-5a8f-44ca-95fe-4dd2c05be1c8"
 
 If there is a missing parameter or no parameter has been provided at all, the task will pause and prompt the user for the missing values. 
 
-![SPFx de-tokenizer request parameter](images/SPFX-Detokenizer-request-parameter.png "SPFx de-tokenizer request parameter")
+![SPFx de-tokenizer request parameter](https://raw.githubusercontent.com/DariuS231/spfx-detokenize/master/images/SPFX-Detokenizer-request-parameter.png "SPFx de-tokenizer request parameter")
 
 ## Result
 After running the task, the tokens in the code within the specified files will be replaced by the provided values.
 
-![SPFx de-tokenizer result](images/SPFX-Detokenizer-result.png "SPFx de-tokenizer result")
+![SPFx de-tokenizer result](https://raw.githubusercontent.com/DariuS231/spfx-detokenize/master/images/SPFX-Detokenizer-result.png "SPFx de-tokenizer result")

@@ -1,53 +1,47 @@
-const assert = require('assert');
+const { assert, expect } = require('chai');
+const { spfxArgs } = require("./../lib/args");
+let { apiURLValue, config, apiIdValue, replaceArrayData } = require("./testData");
 
-const spfxTokenReplace = require('../lib');
-let { apiURLValue, config, apiIdValue, replaceArrayData } = require("./testData/testData");
-const { setFilesOriginalData, getFilesOriginalData, isFilesOriginalDataDifferent } = require("./testUtils/testUtils");
+const newArgKey = "NewArgKey", newArgValue = "newArgValue", appIdKey = "appId", endpointUrlKey = "endpointUrl";
+describe('#spfxArgs', function () {
+    before(function () {
+        process.argv.push(`--${appIdKey}`, apiIdValue, `--${endpointUrlKey}`, apiURLValue);
+    });
 
-describe('spfxTokenReplace instance', function () {
-    describe('Returned Instance properties', function () {
-        before(function () {
-            process.argv.push("--appId", apiIdValue, "--endpointUrl", apiURLValue);
-        });
-        describe('Name', function () {
-            describe('Not Specified', function () {
-                it('Should be default: "detokenize-files"', function () {
-                    const replaceObj = spfxTokenReplace(replaceArrayData);
-                    assert.equal(replaceObj.name, "detokenize-files");
-                });
-            });
-
-            describe('Specified', function () {
-                const nameTest = "nameTest";
-                it(`Should be: "${nameTest}"`, function () {
-                    const replaceObj = spfxTokenReplace(replaceArrayData, nameTest);
-                    assert.equal(replaceObj.name, nameTest);
-                });
-            });
+    describe('#GetArguments()', function () {
+        it(`shoudl return object with appId and ${endpointUrlKey}`, () => {
+            process.argv.push(`--${appIdKey}`, apiIdValue, `--${endpointUrlKey}`, apiURLValue);
+            const args = spfxArgs.GetArguments();
+            expect(args).to.have.all.keys(appIdKey, endpointUrlKey);
         });
 
-        describe('Execute', function () {
-            it(`Should be a function`, function () {
-                const replaceObj = spfxTokenReplace(replaceArrayData);
-                assert.equal(typeof replaceObj.execute, 'function');
-            });
+    });
+
+    describe('#setArgument()', function () {
+        it(`args should contain the new key`, () => {
+            spfxArgs.SetArgument(newArgKey, newArgValue);
+            const args = spfxArgs.GetArguments();
+            expect(args).to.include.keys(newArgKey);
         });
     });
 
-    describe('#Execute()', function () {
-        before(function () {
-            process.argv.push("--appId", apiIdValue, "--endpointUrl", apiURLValue);
-            replaceArrayData = getFilesOriginalData(replaceArrayData, config);
+    describe('#GetArgumentValue()', function () {
+        describe('Passing arguments', function () {
+            it(`should return ${apiIdValue}`, async () => {
+                const tokenData = replaceArrayData[0];
+                const args = spfxArgs.GetArguments();
+                const argValue = await spfxArgs.GetArgumentValue({ paramName: appIdKey }, args);
+                expect(argValue).to.eql(apiIdValue);
+            });
         });
 
-        it(`Should have replaced content of files`, async () => {
-            await spfxTokenReplace(replaceArrayData).execute(config);
-            const isDataDifferent = isFilesOriginalDataDifferent(replaceArrayData, config);
-            assert.equal(true, isDataDifferent);
-        });
-
-        after(function () {
-            setFilesOriginalData(replaceArrayData, config);
+        describe('Not passing arguments', function () {
+            it(`should return ${apiIdValue}`, async () => {
+                const tokenData = replaceArrayData[0];
+                const args = spfxArgs.GetArguments();
+                const argValue = await spfxArgs.GetArgumentValue({ paramName: appIdKey });
+                expect(argValue).to.eql(apiIdValue);
+            });
         });
     });
 }); 

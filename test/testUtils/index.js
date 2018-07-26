@@ -45,15 +45,17 @@ const setFileContent = (filePath, content) => {
     });
 }
 const getFilesOriginalData = async (replaceArrayData, config) => {
-    replaceArrayData.forEach(tokenData => {
+    for (let i = 0; i < replaceArrayData.length; i++) {
+        const tokenData = replaceArrayData[i];
         tokenData.OriginalFiles = [];
-        tokenData.files.forEach(file => {
+        for (let p = 0; p < tokenData.files.length; p++) {
+            const file = tokenData.files[p];
             const filePath = getFileAbsolutePath(config, file);
             const content = await getFileContent(filePath);
             const tokenCount = countWords(content, tokenData.token);
             tokenData.OriginalFiles.push({ file, content, tokenCount });
-        });
-    });
+        }
+    }
     return replaceArrayData
 }
 const setFilesOriginalData = async (replaceArrayData, config) => {
